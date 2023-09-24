@@ -26,6 +26,7 @@ def load(app: "CTFdFlask"):
             db.session.add(user)
             db.session.commit()
             db.session.flush()
+            db.session.refresh(user)
             return user
 
     def create_or_get_user(username: str):
