@@ -52,6 +52,9 @@ def load(app: "CTFdFlask"):
             return redirect("/")
 
         data = data["authenticationSuccess"]
+        if "npm" not in data["attributes"]:
+            flash("Cannot get your NPM, are you a student?", category="error")
+            return redirect("/")
         user = create_or_get_user(data["user"])
 
         session.regenerate()
